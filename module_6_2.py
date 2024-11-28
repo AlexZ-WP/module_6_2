@@ -18,20 +18,22 @@ class Vehicle:
         return f"Цвет: {self.__color}"
 
     def print_info(self):
-        print(Vehicle.get_model)
-        print(Vehicle.get_horsepower)
-        print(Vehicle.get_color)
+        print(self.get_model())
+        print(self.get_horsepower())
+        print(self.get_color())
         print(f'Владелец: {self.owner}')
 
     def set_color(self, new_color):
 
-        new_color = new_color.lower()
-        for i in Vehicle.__COLOR_VARIANTS:
-            if new_color == i.lower:
+        # new_color = new_color.lower() - при таком варианте, присваивается цвет в нижнем регистре
+        for i in Vehicle.__COLOR_VARIANTS: # что бы проверился весь список, нужно обязательно завершить цикл if
+            # (break или return)
+            if new_color.lower() == i.lower():
                 self.__color = new_color
-            else:
-                return
-            print(f"Нельзя сменить цвет на {new_color}]")
+                break
+        else:
+
+            print(f"Нельзя сменить цвет на {new_color}")
 
 
 class Sedan(Vehicle):
@@ -54,8 +56,7 @@ vehicle1.owner = 'Vasyok'
 vehicle1.print_info()
 
 
-print(dir(Vehicle))
-print(dir(Sedan))
+
 
 
 
